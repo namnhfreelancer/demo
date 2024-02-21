@@ -2,7 +2,6 @@
 # Install sudo
 apt install sudo
 usermod -aG sudo thudo-vn
-su thudo-vn
 sudo apt update && sudo apt upgrade -y
 # Install Essential packages
 sudo apt install build-essential -y
