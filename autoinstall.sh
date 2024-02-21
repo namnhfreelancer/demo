@@ -36,9 +36,27 @@ sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 # Speedtest
 docker run --rm robinmanuelthiel/speedtest:latest
-# sudo chmod +x /etc/profile.d/proxy.sh
-# source /etc/profile.d/proxy.sh
-# env | grep -i proxy
+
 #Proxy
-# sudo vim /etc/profile.d/proxy.sh
+read -p "Enter proxy IP: " proxy_ip
+read -p "Enter proxy port: " proxy_port
+read -p "Enter proxy user: " proxy_user
+read -sp "Enter proxy password: " proxy_pass
+echo
+
+export http_proxy="http://$proxy_user:$proxy_pass@$proxy_ip:$proxy_port/"
+export https_proxy="https://$proxy_user:$proxy_pass@$proxy_ip:$proxy_port/"
+export ftp_proxy="ftp://$proxy_user:$proxy_pass@$proxy_ip:$proxy_port/"
+export no_proxy="localhost,127.0.0.1,::1"
+
+echo "http_proxy=\"http://$proxy_user:$proxy_pass@$proxy_ip:$proxy_port/\"" | sudo tee -a /etc/environment
+echo "https_proxy=\"https://$proxy_user:$proxy_pass@$proxy_ip:$proxy_port/\"" | sudo tee -a /etc/environment
+echo "ftp_proxy=\"ftp://$proxy_user:$proxy_pass@$proxy_ip:$proxy_port/\"" | sudo tee -a /etc/environment
+echo "no_proxy=\"localhost,127.0.0.1,::1\"" | sudo tee -a /etc/environment
+
+echo "Proxy settings configured."
 # Io.net
+curl -L https://github.com/ionet-official/io-net-official-setup-script/raw/main/ionet-setup.sh -o ionet-setup.sh
+chmod +x ionet-setup.sh && ./ionet-setup.sh
+curl -L https://github.com/ionet-official/io_launch_binaries/raw/main/launch_binary_linux -o launch_binary_linux
+chmod +x launch_binary_linux
