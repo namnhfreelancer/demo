@@ -35,9 +35,9 @@ sudo apt-get update
 sudo apt-get install docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin -y
 # Speedtest
 docker run --rm robinmanuelthiel/speedtest:latest
-sudo chmod +x /etc/profile.d/proxy.sh
-source /etc/profile.d/proxy.sh
-env | grep -i proxy
+# sudo chmod +x /etc/profile.d/proxy.sh
+# source /etc/profile.d/proxy.sh
+# env | grep -i proxy
 #Proxy
-sudo vim /etc/profile.d/proxy.sh
+# sudo vim /etc/profile.d/proxy.sh
 # Io.net
