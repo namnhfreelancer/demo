@@ -55,6 +55,8 @@ echo "ftp_proxy=\"ftp://$proxy_user:$proxy_pass@$proxy_ip:$proxy_port/\"" | sudo
 echo "no_proxy=\"localhost,127.0.0.1,::1\"" | sudo tee -a /etc/environment
 
 echo "Proxy settings configured."
+# Speedtest after proxy
+docker run --rm robinmanuelthiel/speedtest:latest
 # Io.net
 curl -L https://github.com/ionet-official/io-net-official-setup-script/raw/main/ionet-setup.sh -o ionet-setup.sh
 chmod +x ionet-setup.sh && ./ionet-setup.sh
