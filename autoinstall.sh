@@ -55,6 +55,7 @@ echo "ftp_proxy=\"ftp://$proxy_user:$proxy_pass@$proxy_ip:$proxy_port/\"" | sudo
 echo "no_proxy=\"localhost,127.0.0.1,::1\"" | sudo tee -a /etc/environment
 
 echo "Proxy settings configured."
+curl ipinfo.io/ip
 # Speedtest after proxy
 sudo docker run --rm robinmanuelthiel/speedtest:latest
 # Io.net
