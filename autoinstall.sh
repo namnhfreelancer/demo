@@ -6,7 +6,7 @@ sudo apt update && sudo apt upgrade -y
 # Install Essential packages
 sudo apt install build-essential -y
 sudo apt install software-properties-common -y
-sudo apt-get install linux-headers-$(uname -r)
+sudo apt-get install linux-headers-$(uname -r) -y
 sudo apt update
 # Install OpenSSH
 sudo apt install openssh-server -y
