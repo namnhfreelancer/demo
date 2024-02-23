@@ -3,6 +3,10 @@
 apt install sudo
 usermod -aG sudo thudo-vn
 sudo apt update && sudo apt upgrade -y
+# Enable Internet line 2
+echo "allow-hotplug enp6s0
+iface enp6s0 inet dhcp" | sudo tee -a /etc/network/interfaces > /dev/null
+ifup enp6s0
 # Install Essential packages
 sudo apt install build-essential -y
 sudo apt install software-properties-common -y
