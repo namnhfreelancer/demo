@@ -4,17 +4,18 @@ apt install sudo
 usermod -aG sudo thudo-vn
 sudo apt update && sudo apt upgrade -y
 # Enable Internet line 2
-echo "allow-hotplug enp6s0
-iface enp6s0 inet dhcp" | sudo tee -a /etc/network/interfaces > /dev/null
+ip link
+read -p "Enter port name: " port_name
+echo "allow-hotplug $port_name
+iface $port_name inet dhcp" | sudo tee -a /etc/network/interfaces > /dev/null
+# ifup enp6s0
 # Change hostname
 read -p "Enter Hostname: " new_hostname
 echo
 sudo hostnamectl set-hostname "$new_hostname"
 sudo sed -i "s/127.0.1.1.*/127.0.1.1\t$new_hostname/g" /etc/hosts
 echo $new_hostname | sudo tee /etc/hostname
-
 echo "Hostname changed to $new_hostname"
-ifup enp6s0
 # Install Essential packages
 sudo apt install build-essential -y
 sudo apt install software-properties-common -y
