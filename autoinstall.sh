@@ -35,6 +35,10 @@ sudo add-apt-repository contrib
 sudo apt-get update
 sudo apt-get -y install cuda-toolkit-12-3
 sudo apt-get install -y cuda-drivers
+echo "export PATH=\"/usr/local/cuda-12.3/bin:$PATH\"
+export LD_LIBRARY_PATH=\"/usr/local/cuda-12.3/lib64:$LD_LIBRARY_PATH\"" | sudo tee  -a /home/thudo-vn/.bashrc
+echo "export PATH=\"/usr/local/cuda-12.3/bin:$PATH\"
+export LD_LIBRARY_PATH=\"/usr/local/cuda-12.3/lib64:$LD_LIBRARY_PATH\"" | sudo tee  -a /root/.bashrc
 # Docker
 for pkg in docker.io docker-doc docker-compose podman-docker containerd runc; do sudo apt-get remove $pkg; done
 sudo apt-get update
@@ -65,7 +69,7 @@ sudo docker run --rm robinmanuelthiel/speedtest:latest
 
 # echo "http_proxy=\"http://$proxy_user:$proxy_pass@$proxy_ip:$proxy_port/\"" | sudo tee -a /etc/environment
 # echo "https_proxy=\"https://$proxy_user:$proxy_pass@$proxy_ip:$proxy_port/\"" | sudo tee -a /etc/environment
-# echo "ftp_proxy=\"ftp://$proxy_user:$proxy_pass@$proxy_ip:$proxy_port/\"" | sudo tee -a /etc/environment
+# echo "ftp_proxy=\"ftp://$proxy_user:$proxy_pass@$proxy_ip:$proxy_port\"" | sudo tee -a /etc/environment
 # echo "no_proxy=\"localhost,127.0.0.1,::1\"" | sudo tee -a /etc/environment
 
 # echo "Proxy settings configured."
@@ -77,3 +81,4 @@ curl -L https://github.com/ionet-official/io-net-official-setup-script/raw/main/
 chmod +x ionet-setup.sh && ./ionet-setup.sh
 curl -L https://github.com/ionet-official/io_launch_binaries/raw/main/launch_binary_linux -o launch_binary_linux
 chmod +x launch_binary_linux
+sudo reboot
