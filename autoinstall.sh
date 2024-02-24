@@ -76,6 +76,60 @@ sudo docker run --rm robinmanuelthiel/speedtest:latest
 # curl ipinfo.io/ip
 # Speedtest after proxy
 # sudo docker run --rm robinmanuelthiel/speedtest:latest
+
+# Docker's Proxy
+HTTP_PROXY="http://172.17.0.1:9090"
+HTTPS_PROXY="http://172.17.0.1:9090"
+NO_PROXY="localhost,127.0.0.1"
+
+#rm -r /root/.docker
+#rm -r /home/docker/.docker
+#rm -r /home/thudo-vn/docker
+
+mkdir -p /root/.docker
+mkdir -p /home/docker/.docker
+mkdir -p /home/thudo-vn/.docker
+cat > /root/.docker/config.json <<EOF
+  {
+   "proxies":
+   {
+     "default":
+     {
+       "httpProxy": "$HTTP_PROXY",
+       "httpsProxy": "$HTTPS_PROXY",
+       "noProxy": "$NO_PROXY"
+     }
+   }
+  }
+EOF
+cat > /home/docker/.docker/config.json <<EOF
+  {
+   "proxies":
+   {
+     "default":
+     {
+       "httpProxy": "$HTTP_PROXY",
+       "httpsProxy": "$HTTPS_PROXY",
+       "noProxy": "$NO_PROXY"
+     }
+   }
+  }
+EOF
+cat > /home/thudo-vn/.docker/config.json <<EOF
+  {
+   "proxies":
+   {
+     "default":
+     {
+       "httpProxy": "$HTTP_PROXY",
+       "httpsProxy": "$HTTPS_PROXY",
+       "noProxy": "$NO_PROXY"
+     }
+   }
+  }
+EOF
+echo "Docker is now configured to use the proxy."
+
 # Io.net
 curl -L https://github.com/ionet-official/io-net-official-setup-script/raw/main/ionet-setup.sh -o ionet-setup.sh
 chmod +x ionet-setup.sh && ./ionet-setup.sh
