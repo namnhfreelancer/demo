@@ -8,6 +8,7 @@ ip link
 read -p "Enter port name: " port_name
 echo "allow-hotplug $port_name
 iface $port_name inet dhcp" | sudo tee -a /etc/network/interfaces > /dev/null
+echo "Sucess add port $port_name to /etc/network/interfaces, please 'ifup $port_name' later"
 # ifup enp6s0
 # Change hostname
 read -p "Enter Hostname: " new_hostname
