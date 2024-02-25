@@ -160,5 +160,6 @@ sudo bash -c 'cat <<EOF > /etc/docker/daemon.json
    "exec-opts": ["native.cgroupdriver=cgroupfs"]
 }
 EOF'
+sudo systemctl restart docker
 # Final
 sudo reboot
