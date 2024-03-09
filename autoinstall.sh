@@ -22,8 +22,7 @@ allow-hotplug enp7s0
 iface enp7s0 inet dhcp
 allow-hotplug enp8s0
 iface enp8s0 inet dhcp" | sudo tee -a /etc/network/interfaces > /dev/null
-  echo "Sucess add enp1s0 to enp8s0 to /etc/network/interfaces, please 'ifup $port_name' later"
-fi
+echo "Sucess add enp1s0 to enp8s0 to /etc/network/interfaces, please 'ifup $port_name' later"
 # Change hostname
 read -p "Enter Hostname: " new_hostname
 echo
