@@ -5,15 +5,25 @@ usermod -aG sudo thudo-vn
 sudo apt update && sudo apt upgrade -y
 # Enable Internet line 2
 ip link
-read -p "Enter port name: " port_name
-if [ "$port_name" = "skip" ]; then
-  echo "Skipping port addition."
-else
-  echo "allow-hotplug $port_name
-iface $port_name inet dhcp" | sudo tee -a /etc/network/interfaces > /dev/null
-  echo "Sucess add port $port_name to /etc/network/interfaces, please 'ifup $port_name' later"
+  echo "Add all ip link"
+  echo "allow-hotplug enp1s0
+iface enp1s0 inet dhcp
+allow-hotplug enp2s0
+iface enp2s0 inet dhcp
+allow-hotplug enp3s0
+iface enp3s0 inet dhcp
+allow-hotplug enp4s0
+iface enp4s0 inet dhcp
+allow-hotplug enp5s0
+iface enp5s0 inet dhcp
+allow-hotplug enp6s0
+iface enp6s0 inet dhcp
+allow-hotplug enp7s0
+iface enp7s0 inet dhcp
+allow-hotplug enp8s0
+iface enp8s0 inet dhcp" | sudo tee -a /etc/network/interfaces > /dev/null
+  echo "Sucess add enp1s0 to enp8s0 to /etc/network/interfaces, please 'ifup $port_name' later"
 fi
-# ifup enp6s0
 # Change hostname
 read -p "Enter Hostname: " new_hostname
 echo
